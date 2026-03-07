@@ -8,13 +8,15 @@ const allIssue = () => {
 };
 
 const displayissue = (issues) => {
-
+document.getElementById("issue-count").innerText = issues.length;
   const issueContainer = document.getElementById("all-issue");
 
   issueContainer.innerHTML = "";
 
-  for (let issue of issues) {
+  for (let [index, issue] of issues.entries()) {
    const shortDescription = issue.description.slice(0, 30) + "...";
+
+   const updatedate = issue.updatedAt.slice(0, 9)
 
    let borderColor = "border-gray-300"; 
     if (issue.status.toLowerCase() === "open") {
@@ -23,6 +25,16 @@ const displayissue = (issues) => {
       borderColor = "border-purple-500";
     }
 
+    // level hightlight kora
+   let levelhighlight = issue.labels.map((lvl, index) => {
+
+  const bgColor = index === 0 ? "bg-red-100 text-red-600 border" : "bg-yellow-100 text-yellow-600 border";
+
+  return `<span class="${bgColor} text-xs px-2 py-1 rounded-2xl mr-1">     
+            ${lvl}
+          </span>`;
+
+}).join("");
 
     // priority besed design
      let icon = "";
@@ -43,12 +55,16 @@ const displayissue = (issues) => {
     const div = document.createElement("div");
 
     div.innerHTML = `
-         <div class="p-4 border-t-4 ${borderColor} rounded mb-2 h-[180px] flex flex-col justify-between shadow-lg">
+         <div class="p-4 border-t-4 ${borderColor} rounded mb-2 h-[250px] flex flex-col justify-between shadow-lg">
         <div class="flex justify-between items-center gap-2">
           ${icon} <span class="${priorityClass}">${issue.priority }</span>
         </div>
         <h2 class="font-bold">${issue.title}</h2>
         <p>${shortDescription}</p>
+        <span>${levelhighlight}</span>
+        <hr class="text-gray-300">
+        <p class="text-gray-500">#${index+1} by john_doe</p>
+        <p class="text-gray-500">${updatedate}</p>
       </div>
     `;
 
