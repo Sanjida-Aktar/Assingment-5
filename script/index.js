@@ -23,21 +23,27 @@ const displayissue = (issues) => {
       borderColor = "border-purple-500";
     }
 
+
+    // priority besed design
      let icon = "";
     let priorityClass = "";
-    if(issue.priority && issue.priority.toLowerCase() === "high"){
+    if(issue.priority === "high"){
         icon = `<img src="assets/Open-Status.png" alt="" class="w-6 h-6 inline-block mr-1"/>`;
-        priorityClass = "bg-red-100 border text-black-500 rounded-full px-2 py-1 text-white text-xs font-bold";
+        priorityClass = "bg-red-100 text-red-500 border  rounded-full px-2 py-1  text-xs font-bold";
     }
     else if(issue.priority  === "medium"){
         icon = `<img src="assets/Open-Status.png" alt="" class="w-6 h-6 inline-block mr-1"/>`;
-        priorityClass = "bg-yellow-100 text-yellow-500 border rounded-full px-2 py-1 text-white text-xs font-bold";
+        priorityClass = "bg-yellow-100 text-yellow-500 border rounded-full px-2 py-1  text-xs font-bold";
+    }
+    else if(issue.priority  === "low"){
+        icon = `<img src="assets/Closed- Status .png" alt="" class="w-6 h-6 inline-block mr-1"/>`;
+        priorityClass = "bg-gray-100 text-gray-500 border rounded-full px-2 py-1  text-xs font-bold";
     }
     
     const div = document.createElement("div");
 
     div.innerHTML = `
-         <div class="p-4 border-y-4 ${borderColor} rounded mb-2 h-[180px] flex flex-col justify-between shadow-lg">
+         <div class="p-4 border-t-4 ${borderColor} rounded mb-2 h-[180px] flex flex-col justify-between shadow-lg">
         <div class="flex justify-between items-center gap-2">
           ${icon} <span class="${priorityClass}">${issue.priority }</span>
         </div>
