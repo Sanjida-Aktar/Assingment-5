@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- title & logo -->
+    <title>Github Issues Tracker </title>
+    <link rel="stylesheet" href="assets/logo.png" type="image/x-icon"/>
+
+    <!-- font Awesome cdn -->
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css
+">
+     <!-- tailwind and deisi UI cdn -->
+      <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+</head>
+<body class="w-11/12 mx-auto py-8 space-y-5">
+    <!-- header section -->
+    <header >
+  <div class="navbar bg-base-100 shadow-sm px-4">
+    
+    <div class="flex flex-1 items-center gap-2">
+      <img src="assets/github-logo.png" alt="GitHub Logo" class="w-8 h-8" />
+      <h2 class="text-lg font-semibold">GitHub Issues Tracker</h2>
+    </div>
+
+    <div class="flex gap-2">
+      <input 
+        type="text" id="search-issue" 
+  name="searchIssue" 
+        placeholder="Search issue" 
+        class="input input-bordered w-32 md:w-64" 
+      />
+      <button class="btn btn-primary">Add issue</button>
+    </div>
+  </div>
+</header>
+
+<!-- button  -->
+ <section>
+    <div  class="w-11/12 mx-auto pb-2 bg-base-100 shadow-sm px-4">
+            <button id="all-job" class="btn  py-4 px-8 btn-active btn-outline btn-primary" >All</button>
+            <button id="interview-job" class="btn  py-4 btn-outline btn-primary" >Open</button>
+            <button  id="rejected-job" class="btn  py-4 btn-outline btn-primary" >Closed</button>
+            
+        </div>
+ </section>
+    
+
+ <section id="all-issue" class="grid grid-cols-2 lg:grid-cols-4 gap-2 w-11/12 mx-auto pb-2 bg-base-100 shadow-sm px-4 ">
+
+   
+
+ </section>
+ <script src="./script/index.js"></script>
+</body>
+</html>
