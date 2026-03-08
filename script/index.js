@@ -1,11 +1,17 @@
+let alldataissue=[];
 const allIssue = () => {
 
   fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     .then(res => res.json())
-    .then(data => displayissue(data.data))
-    .catch(err => console.error(err));
+    .then(data => {
+      alldataissue = data.data;
+      displayissue(alldataissue);
+      updateCounts(alldataissue);
 
-};
+    })
+    .catch(err => console.error(err));
+}
+
 
 const displayissue = (issues) => {
 document.getElementById("issue-count").innerText = issues.length;
@@ -14,7 +20,7 @@ document.getElementById("issue-count").innerText = issues.length;
   issueContainer.innerHTML = "";
 
   for (let [index, issue] of issues.entries()) {
-   const shortDescription = issue.description.slice(0, 30) + "...";
+   const shortDescription = issue.description.slice(0, 40) + "...";
 
    const updatedate = issue.updatedAt.slice(0, 9)
 
@@ -61,7 +67,7 @@ document.getElementById("issue-count").innerText = issues.length;
         </div>
         <h2 class="font-bold">${issue.title}</h2>
         <p>${shortDescription}</p>
-        <span>${levelhighlight}</span>
+        <span class="pb-2">${levelhighlight}</span>
         <hr class="text-gray-300">
         <p class="text-gray-500">#${index+1} by john_doe</p>
         <p class="text-gray-500">${updatedate}</p>
@@ -71,5 +77,26 @@ document.getElementById("issue-count").innerText = issues.length;
     issueContainer.appendChild(div);
   }
 };
+
+// Update counts
+const updateCounts = (issues) => {
+  document.getElementById("all-count").innerText = issues.length;
+  document.getElementById("open-count").innerText = issues.filter(i => i.status === "open").length;
+  document.getElementById("closed-count").innerText = issues.filter(i => i.status === "closed").length;
+};
+// Switch tab filter
+const switchTab = (status, btn) => {
+  // Remove active from all buttons
+  const buttons = document.querySelectorAll("section > div > button");
+  buttons.forEach(b => b.classList.remove("btn-active"));
+
+  // Add active to clicked
+  btn.classList.add("btn-active");
+
+  if(status === "all") displayissue(alldataissue);
+  else if(status === "open") displayissue(alldataissue.filter(i => i.status === "open"));
+  else if(status === "closed") displayissue(alldataissue.filter(i => i.status === "closed"));
+};
+
 
 allIssue();

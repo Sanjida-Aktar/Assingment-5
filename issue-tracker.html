@@ -48,9 +48,9 @@
 <!-- button  -->
  <section>
     <div  class="w-11/12 mx-auto pb-2 bg-base-100 shadow-sm px-4">
-            <button id="all-job" class="btn  py-4 px-8 btn-active btn-outline btn-primary" >All</button>
-            <button id="interview-job" class="btn  py-4 btn-outline btn-primary" >Open</button>
-            <button  id="rejected-job" class="btn  py-4 btn-outline btn-primary" >Closed</button>
+            <button onclick="switchTab('all', this)" class="btn  py-4 px-8 btn-active btn-outline btn-primary" >All </button>
+            <button onclick="switchTab('open', this)"  class="btn  py-4 btn-outline btn-primary" >Open  </button>
+            <button onclick="switchTab('closed', this)"  class="btn  py-4 btn-outline btn-primary" >Closed </button>
             
         </div>
  </section>
@@ -77,5 +77,6 @@
 
  </section>
  <script src="./script/index.js"></script>
+ <!-- <script src="./script/button.js"></script> -->
 </body>
 </html>
