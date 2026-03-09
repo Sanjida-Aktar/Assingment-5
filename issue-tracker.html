@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="assets/logo.png" type="image/x-icon"/>
 
     <!-- font Awesome cdn -->
-<link  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css
-">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
      <!-- tailwind and deisi UI cdn -->
       <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -30,17 +29,20 @@
     
     <div class="flex flex-1 items-center gap-2">
       <img src="assets/github-logo.png" alt="GitHub Logo" class="w-8 h-8" />
-      <h2 class="text-lg font-semibold">GitHub Issues Tracker</h2>
+      <h2 class="text-2xl font-semibold">GitHub Issues Tracker</h2>
     </div>
 
     <div class="flex gap-2">
-      <input 
+      <div>
+        
+        <input  
         type="text" id="search-issue" 
   name="searchIssue" 
         placeholder="Search issue" 
         class="input input-bordered w-32 md:w-64" 
       />
-      <button class="btn btn-primary">Add issue</button>
+      </div>
+      <button class="btn btn-primary"> <i class="fa-solid fa-plus"></i>Add issue</button>
     </div>
   </div>
 </header>
@@ -83,7 +85,7 @@
       </div>
       <div class="modal-action">
         <form method="dialog">
-          <button class="btn"> close </button>
+          <button class="btn btn-primary"> close </button>
         </form>
       </div>
     </div>

@@ -6,7 +6,7 @@ const allIssue = () => {
     .then(data => {
       alldataissue = data.data;
       displayissue(alldataissue);
-      // updateCounts(alldataissue);
+    
 
     })
     .catch(err => console.error(err));
@@ -22,7 +22,7 @@ document.getElementById("issue-count").innerText = issues.length;
   for (let [index, issue] of issues.entries()) {
    const shortDescription = issue.description.slice(0, 40) + "...";
 
-   const updatedate = issue.updatedAt.slice(0, 9)
+   const createdAt = issue.createdAt.slice(0, 9)
 
    let borderColor = "border-gray-300"; 
     if (issue.status.toLowerCase() === "open") {
@@ -32,15 +32,24 @@ document.getElementById("issue-count").innerText = issues.length;
     }
 
     // level hightlight kora
-   let levelhighlight = issue.labels.map((lvl, index) => {
+   const labelColors = {
+  bug: "bg-red-100 text-red-600 border",
+  enhancement: "bg-green-100 text-green-600 border",
+  
+};
+  
+  let levelhighlight = issue.labels.map(lvl => {
 
-  const bgColor = index === 0 ? "bg-red-100 text-red-600 border" : "bg-yellow-100 text-yellow-600 border";
+  const color = labelColors[lvl] || "bg-yellow-100 text-yellow-600 border";
 
-  return `<span class="${bgColor} text-xs px-2 py-1 rounded-2xl mr-1">     
-            ${lvl}
-          </span>`;
+  return `
+    <span class="${color} text-xs px-2 py-1 rounded-2xl mr-1">
+      ${lvl}
+    </span>
+  `;
 
 }).join("");
+
 
 
 
@@ -71,8 +80,8 @@ document.getElementById("issue-count").innerText = issues.length;
         <p>${shortDescription}</p>
         <span class="pb-2">${levelhighlight}</span>
         <hr class="text-gray-300">
-        <p class="text-gray-500">#${index+1} by john_doe</p>
-        <p class="text-gray-500">${updatedate}</p>
+        <p class="text-gray-500">#${index+1} by ${issue.author}</p>
+        <p class="text-gray-500">${createdAt}</p>
       </div>
     `;
     div.addEventListener("click", () => {
