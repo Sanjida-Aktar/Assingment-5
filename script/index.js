@@ -6,7 +6,7 @@ const allIssue = () => {
     .then(data => {
       alldataissue = data.data;
       displayissue(alldataissue);
-      updateCounts(alldataissue);
+      // updateCounts(alldataissue);
 
     })
     .catch(err => console.error(err));
@@ -42,6 +42,8 @@ document.getElementById("issue-count").innerText = issues.length;
 
 }).join("");
 
+
+
     // priority besed design
      let icon = "";
     let priorityClass = "";
@@ -61,7 +63,7 @@ document.getElementById("issue-count").innerText = issues.length;
     const div = document.createElement("div");
 
     div.innerHTML = `
-         <div class="p-4 border-t-4 ${borderColor} rounded mb-2 h-[250px] flex flex-col justify-between shadow-lg">
+         <div  class="p-4 border-t-4 ${borderColor} rounded mb-2 h-[250px] flex flex-col justify-between shadow-lg">
         <div class="flex justify-between items-center gap-2">
           ${icon} <span class="${priorityClass}">${issue.priority }</span>
         </div>
@@ -73,20 +75,18 @@ document.getElementById("issue-count").innerText = issues.length;
         <p class="text-gray-500">${updatedate}</p>
       </div>
     `;
+    div.addEventListener("click", () => {
+  detailsData(issue.id);
+});
+
 
     issueContainer.appendChild(div);
   }
 };
 
-// Update counts
-const updateCounts = (issues) => {
-  document.getElementById("all-count").innerText = issues.length;
-  document.getElementById("open-count").innerText = issues.filter(i => i.status === "open").length;
-  document.getElementById("closed-count").innerText = issues.filter(i => i.status === "closed").length;
-};
-// Switch tab filter
+
 const switchTab = (status, btn) => {
-  // Remove active from all buttons
+ 
   const buttons = document.querySelectorAll("section > div > button");
   buttons.forEach(b => b.classList.remove("btn-active"));
 
@@ -100,3 +100,15 @@ const switchTab = (status, btn) => {
 
 
 allIssue();
+document.getElementById("search-issue").addEventListener("input", function () {
+
+  const search = document.getElementById("search-issue").value.toLowerCase();
+
+  const matchissue = alldataissue.filter(issue =>
+    issue.title.toLowerCase().includes(search)
+  );
+
+  displayissue(matchissue);
+
+});
+
